@@ -3,20 +3,22 @@ import {
   FaFileAlt,
   FaClipboardCheck,
   FaPlusCircle,
-  FaSignOutAlt
+  FaSignOutAlt,
 } from "react-icons/fa";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Layout({ children }) {
+  const navigate = useNavigate();
+
   const user =
-    JSON.parse(localStorage.getItem("user"));
+    JSON.parse(localStorage.getItem("user")) || {};
 
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
 
-    window.location.href = "/login";
+    navigate("/login");
   };
 
   return (
@@ -28,14 +30,14 @@ function Layout({ children }) {
         style={{
           width: "260px",
           minHeight: "100vh",
-          borderRight: "1px solid #ffffff"
+          borderRight: "1px solid #ffffff",
         }}
       >
 
         {/* Logo */}
         <div className="text-center mb-4">
           <h3 className="fw-bold text-primary">
-             PTW System
+            PTW System
           </h3>
 
           <small className="text-muted">
@@ -48,7 +50,7 @@ function Layout({ children }) {
           className="text-center mb-4 p-3"
           style={{
             background: "#ffffff",
-            borderRadius: "12px"
+            borderRadius: "12px",
           }}
         >
           <h5 className="fw-bold">
@@ -127,7 +129,7 @@ function Layout({ children }) {
         className="flex-grow-1"
         style={{
           background: "#abe7ff",
-          minHeight: "100vh"
+          minHeight: "100vh",
         }}
       >
 
@@ -135,7 +137,7 @@ function Layout({ children }) {
         <nav
           className="navbar bg-white shadow-sm"
           style={{
-            height: "70px"
+            height: "70px",
           }}
         >
           <div className="container-fluid">
